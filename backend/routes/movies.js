@@ -10,22 +10,22 @@ const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
 
-// require auth for all workout routes
+// require auth for all movie routes
 router.use(requireAuth);
 
-// GET all workouts
+// GET all movies
 router.get("/", getMovies);
 
-//GET a single workout
+//GET a single movie
 router.get("/:id", getMovie);
 
-// POST a new workout
+// POST a new movie
 router.post("/", createMovie);
 
-// DELETE a workout
+// DELETE a movie
 router.delete("/:id", deleteMovie);
 
-// UPDATE a workout
+// UPDATE a movie
 router.patch("/:id", updateMovie);
 
 module.exports = router;

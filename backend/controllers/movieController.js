@@ -74,7 +74,7 @@ const updateMovie = async (req, res) => {
         return res.status(400).json({ error: "no such movie" });
     }
 
-    const movie = await Workout.findOneAndUpdate({ _id: id }, { ...req.body });
+    const movie = await Movie.findOneAndUpdate({ _id: id }, { ...req.body });
     if (!movie) return res.status(400).json({ error: "Movie not found" });
     res.status(200).json(movie);
 };
