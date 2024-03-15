@@ -63,35 +63,35 @@ const MovieForm = () => {
             <label>Movie Genre:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setGenre(e.target.value)}
                 value={genre}
                 className={emptyFields.includes("genre") ? "error" : ""}
             />
             <label>Movie Summary:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setSummary(e.target.value)}
                 value={summary}
                 className={emptyFields.includes("summary") ? "error" : ""}
             />
             <label>Movie Director:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setDirector(e.target.value)}
                 value={director}
                 className={emptyFields.includes("director") ? "error" : ""}
             />
             <label>Movie Year:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setYear(e.target.value)}
                 value={year}
                 className={emptyFields.includes("year") ? "error" : ""}
             />
             <label>Movie Image:</label>
             <input
                 type="text"
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
                 value={image}
                 className={emptyFields.includes("image") ? "error" : ""}
             />
