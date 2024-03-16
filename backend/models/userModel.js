@@ -17,10 +17,6 @@ const userSchema = new Schema({
         type: String,
         default: "user",
     },
-    watchlist: {
-        type: [String],
-        default: [],
-    },
 });
 
 // static signup method
