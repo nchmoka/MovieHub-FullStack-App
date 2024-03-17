@@ -17,10 +17,6 @@ const userSchema = new Schema({
         type: String,
         default: "user",
     },
-    watchlist: {
-        type: [String],
-        default: [],
-    },
 });
 
 // static signup method
@@ -44,9 +40,8 @@ userSchema.statics.signup = async function (email, password) {
 
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-
-    const user = await this.create({ email, password: hash });
-
+    // we can add admin manually by changing the rule to "admin" and after adding the user to change it back to "user"
+    const user = await this.create({ email, password: hash, rule: "user" });
     return user;
 };
 
