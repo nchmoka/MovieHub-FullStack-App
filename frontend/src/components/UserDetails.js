@@ -73,15 +73,15 @@ const UserDetails = ({ user }) => {
                 {user.email}
             </p>
             {editing ? (
-                <div>
-                    <label>
+                <p>
+                    <strong>
                         New Rule:
                         <input
                             type="text"
                             value={newRule}
                             onChange={(e) => setNewRule(e.target.value)}
                         />
-                    </label>
+                    </strong>
                     <button onClick={handleEdit}>Save</button>
                     <button
                         style={{ background: "#e7195a" }}
@@ -89,7 +89,7 @@ const UserDetails = ({ user }) => {
                     >
                         Cancel
                     </button>
-                </div>
+                </p>
             ) : (
                 <p>
                     <strong>Rule: </strong>
