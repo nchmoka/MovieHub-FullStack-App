@@ -12,11 +12,11 @@ const loginUser = async (req, res) => {
 
     try {
         const user = await User.login(email, password);
-
+        rule = user.rule;
         // create token
         const token = createToken(user._id);
 
-        res.status(201).json({ email, token });
+        res.status(201).json({ email, token, rule });
     } catch (err) {
         res.status(400).json({ error: err.message });
     }
@@ -36,4 +36,8 @@ const signupUser = async (req, res) => {
     }
 };
 
-module.exports = { signupUser, loginUser };
+const getUsers = async (req, res) => {
+    const users = await User.find({}).sort({ ceratedAt: -1 });
+    res.status(200).json(users);
+};
+module.exports = { signupUser, loginUser, getUsers };
