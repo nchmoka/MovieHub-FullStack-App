@@ -7,8 +7,8 @@ const router = express.Router();
 // Require authentication for all watchlist routes
 router.use(requireAuth);
 
-// Add a movie to the watchlist
-router.post('/add', watchlistController.addMovieToWatchlist);
+// // Add a movie to the watchlist
+// router.post('/add', watchlistController.addMovieToWatchlist);
 
 // Remove a movie from the watchlist
 // Assuming you pass userId and movieId as URL parameters for simplicity
