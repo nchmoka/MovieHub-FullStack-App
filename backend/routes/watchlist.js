@@ -7,15 +7,16 @@ const router = express.Router();
 // Require authentication for all watchlist routes
 router.use(requireAuth);
 
-// // Add a movie to the watchlist
-// router.post('/add', watchlistController.addMovieToWatchlist);
+// Add a movie to the watchlist
+// Now using the movieId in the route and relying on authentication to know the user
+router.post('/add/:movieId', watchlistController.addMovieToWatchlist);
 
 // Remove a movie from the watchlist
-// Assuming you pass userId and movieId as URL parameters for simplicity
-router.delete('/remove/:userId/:movieId', watchlistController.removeMovieFromWatchlist);
+// Assuming removal also uses authentication to identify the user rather than URL parameters
+router.delete('/remove/:movieId', watchlistController.removeMovieFromWatchlist);
 
 // Fetch the user's watchlist
-// Assuming you pass userId as a URL parameter
+// Now simply relying on authentication to identify the user, no need for userId in the URL
 router.get('/:userId', watchlistController.fetchWatchlist);
 
 module.exports = router;
