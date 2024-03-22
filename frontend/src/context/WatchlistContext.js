@@ -1,15 +1,11 @@
 import { createContext, useReducer } from "react";
 
-export const MoviesContext = createContext();
-export const moviesReducer = (state, action) => {
+export const WatchlistContext = createContext();
+export const watchlistReducer = (state, action) => {
     switch (action.type) {
         case "SET_MOVIES":
             return {
                 movies: action.payload,
-            };
-        case "CREATE_MOVIE":
-            return {
-                movies: [action.payload, ...state.movies],
             };
         case "DELETE_MOVIE":
             return {
@@ -17,11 +13,6 @@ export const moviesReducer = (state, action) => {
                     (w) => w._id !== action.payload._id
                 ),
             };
-            case "ADD_TO_WATCHLIST":
-                return {
-                    ...state, 
-                    watchlist: [...state.watchlist, action.payload],
-                };
             case "REMOVE_FROM_WATCHLIST":
                 return {
                     ...state, 
@@ -33,14 +24,14 @@ export const moviesReducer = (state, action) => {
             return state;
     }
 };
-export const MoviesContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(moviesReducer, {
+export const WatchlistContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(watchlistReducer, {
         movies: null,
         watchlist: [],
     });
     return (
-        <MoviesContext.Provider value={{ ...state, dispatch }}>
+        <WatchlistContext.Provider value={{ ...state, dispatch }}>
             {children}
-        </MoviesContext.Provider>
+        </WatchlistContext.Provider>
     );
 };
