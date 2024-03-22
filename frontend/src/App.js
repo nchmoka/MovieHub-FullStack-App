@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Users from "./pages/Users";
+import Movies from "./pages/Movies";
 function App() {
     const { user } = useAuthContext();
     const isAdmin = user && user.rule === "admin";
@@ -39,6 +40,10 @@ function App() {
                         <Route
                             path="/signup"
                             element={!user ? <Signup /> : <Navigate to="/" />}
+                        />
+                        <Route
+                            path="/movies"
+                            element={isAdmin ? <Movies /> : <Navigate to="/" />}
                         />
                     </Routes>
                 </div>
