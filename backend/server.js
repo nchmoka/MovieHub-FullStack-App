@@ -4,6 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const moviesRoutes = require("./routes/movies");
 const userRoutes = require("./routes/user");
+const watchlistRoutes = require("./routes/watchlist"); // Update the path according to your project structure
 
 // express app
 const app = express();
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 // routes
 app.use("/api/movies", moviesRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/watchlist", watchlistRoutes); // Use watchlist routes
 
 // connect to mongodb & listen for requests
 mongoose

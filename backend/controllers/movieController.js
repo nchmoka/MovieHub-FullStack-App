@@ -4,13 +4,11 @@ const mongoose = require("mongoose");
 // GET all Movies
 const getMovies = async (req, res) => {
     const movies = await Movie.find({}).sort({ ceratedAt: -1 });
-
     res.status(200).json(movies);
 };
 // GET one movie
 const getMovie = async (req, res) => {
     const { id } = req.params;
-
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ error: "no such movie" });
     }

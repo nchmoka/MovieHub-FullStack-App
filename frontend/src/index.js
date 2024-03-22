@@ -5,6 +5,8 @@ import App from "./App";
 import { MoviesContextProvider } from "./context/MoviesContext";
 import { AuthContextProvider } from "./context/AuthContext";
 import { UsersContextProvider } from "./context/UsersContext";
+// Import WatchlistContextProvider
+import { WatchlistContextProvider } from "./context/WatchlistContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,7 +14,10 @@ root.render(
         <AuthContextProvider>
             <MoviesContextProvider>
                 <UsersContextProvider>
-                    <App />
+                    {/* Wrap App component with WatchlistContextProvider */}
+                    <WatchlistContextProvider>
+                        <App />
+                    </WatchlistContextProvider>
                 </UsersContextProvider>
             </MoviesContextProvider>
         </AuthContextProvider>
