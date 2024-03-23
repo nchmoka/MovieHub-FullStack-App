@@ -9,7 +9,7 @@ const Watchlist = () => {
 
   useEffect(() => {
     const fetchWatchlist = async () => {
-        const response = await fetch("/api/watchlist/" + user._id, {
+        const response = await fetch("/api/watchlist/" + user.email, {
             headers: {
                 Authorization: `Bearer ${user.token}`,
             },
