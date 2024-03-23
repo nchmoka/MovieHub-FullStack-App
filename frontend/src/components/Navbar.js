@@ -24,14 +24,15 @@ const Navbar = () => {
                             <Link to="/movies">
                                 <button type="button">Movies</button>
                             </Link>
-               
-                                                
+                            <Link to="/watchlist">
+                                <button type="button">Watchlist</button>
+                            </Link>
                             <button onClick={handleClick}>Logout</button>
                         </div>
                     )}
                     {user && user.rule !== "admin" && (
                         <div>
-                            <Link to="/watchlist">Watchlist</Link>  
+                            <Link to="/watchlist">Watchlist</Link>
                             <button onClick={handleClick}>Logout</button>
                         </div>
                     )}
