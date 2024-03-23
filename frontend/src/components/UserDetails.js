@@ -95,7 +95,12 @@ const UserDetails = ({ user }) => {
                     <strong>Rule: </strong>
                     {user.rule}
                     {currentUser && currentUser.rule === "admin" && (
-                        <button onClick={() => setEditing(true)}>Edit</button>
+                        <button
+                            style={{ marginLeft: "5px" }}
+                            onClick={() => setEditing(true)}
+                        >
+                            Edit
+                        </button>
                     )}
                 </p>
             )}

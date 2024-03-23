@@ -16,10 +16,23 @@ const Navbar = () => {
                     <h1>MovieHub</h1>
                 </Link>
                 <nav>
-                    {user && (
-                        <div>                            
-                            <span>{user.email}</span>  
-                            <Link to="/watchlist">Watchlist</Link>                      
+                    {user && user.rule === "admin" && (
+                        <div>
+                            <span>{user.email}</span>
+                            <Link to="/users">
+                                <button type="button">Users</button>
+                            </Link>
+                            <Link to="/movies">
+                                <button type="button">Movies</button>
+                            </Link>
+               
+                                                
+                            <button onClick={handleClick}>Logout</button>
+                        </div>
+                    )}
+                    {user && user.rule !== "admin" && (
+                        <div>
+                            <Link to="/watchlist">Watchlist</Link>  
                             <button onClick={handleClick}>Logout</button>
                         </div>
                     )}

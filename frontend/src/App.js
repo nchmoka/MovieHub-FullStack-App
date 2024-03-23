@@ -7,7 +7,7 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import Users from "./pages/Users";
 import Watchlist from "./pages/Watchlist";
-
+import Movies from "./pages/Movies";
 function App() {
     const { user } = useAuthContext();
     const isAdmin = user && user.rule === "admin";
@@ -47,6 +47,10 @@ function App() {
                             element={user ? <Watchlist /> : <Navigate to="/login" />}
 />
 
+                        <Route
+                            path="/movies"
+                            element={isAdmin ? <Movies /> : <Navigate to="/" />}
+                        />
                     </Routes>
                 </div>
             </BrowserRouter>
