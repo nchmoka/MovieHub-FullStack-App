@@ -57,35 +57,24 @@ const MovieDetails = ({ movie }) => {
             userEmail: user.email, // Assuming 'user' object contains an 'email' field
             movieId: movie._id // This might be redundant if you're already specifying the movie ID in the URL
         });
-        
-        const response = await fetch("/api/watchlist/remove/" + movie._id, {
-            method: "DELETE", // Keep as POST since we're adding to the watchlist
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.token}`,
-            },
-            body: body // Include the body in the request
-        });
-        const json = await response.json();
-        if (response.ok) {
-            // Assuming you have a dispatch action for adding to the watchlist
-            dispatch({ type: "REMOVE_MOVIE_FROM_WATCHLIST", payload: json });
-        }
     };
 
     return (
-        <div className="movie-details">
-            <button onClick={handleAddToWatchlistClick}>Add To Watchlist</button>
-            <button onClick={handleRemoveFromWatchlistClick}>Remove From Watchlist</button>
+        <div className="movie-details" style={{ position: 'relative' }}>
+            <div style={{ position: 'absolute', right: '0', top: '0', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '10px' }}>
+                <button className="material-symbols-outlined" onClick={handleRemoveMovieClick}>
+                    delete
+                </button>
+                <button title="Add to Watchlist" className="material-symbols-outlined" onClick={handleAddToWatchlistClick}>
+                    add 
+                </button>
+            </div>
             <h4>{movie.title}</h4>
             <p><strong>Genre: </strong>{movie.genre}</p>
             <p><strong>Summary: </strong>{movie.summary}</p>
             <p><strong>Director: </strong>{movie.director}</p>
             <p><strong>Year: </strong>{movie.year}</p>
             <p><strong>Image: </strong>{movie.image}</p>
-            <span className="material-symbols-outlined" onClick={handleRemoveMovieClick}>
-                delete
-            </span>
         </div>
     );
 };

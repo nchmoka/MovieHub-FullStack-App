@@ -25,7 +25,9 @@ const WatchlistDetails = ({ movie }) => {
 
     return (
         <div className="movie-details">
-            <button onClick={handleRemoveFromWatchlistClick}>Remove From Watchlist</button>
+            <button title="Add to Watchlist" className="material-symbols-outlined" onClick={handleRemoveFromWatchlistClick}>
+                delete 
+            </button>
             <h4>{movie.title}</h4>
             <p><strong>Genre: </strong>{movie.genre}</p>
             <p><strong>Summary: </strong>{movie.summary}</p>

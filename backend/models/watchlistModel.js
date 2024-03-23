@@ -27,7 +27,6 @@ watchlistSchema.statics.fetchWatchlist = async function (email) {
     if (!user) {
       throw new Error("User not found.");
     }
-    console.log('Watchlist');
   
     // Fetch watchlist for the user and populate the movies
     const watchlist = await this.findOne({ user: user._id })
@@ -40,6 +39,7 @@ watchlistSchema.statics.fetchWatchlist = async function (email) {
     // Since we're populating 'movies', 'watchlist.movies' will contain the full movie documents
     return watchlist.movies;
 };
+
 
 watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
   // Ensure both parameters are provided
@@ -68,7 +68,7 @@ watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
   } else {
       // If the movie is already in the watchlist, throw an error
       if (watchlist.movies.includes(movieId)) {
-          throw new Error("Movie already in watchlist.");
+        return watchlist;
       }
       // Add the movie to the existing watchlist
       watchlist.movies.push(movieId);
