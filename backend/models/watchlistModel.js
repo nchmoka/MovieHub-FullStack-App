@@ -20,6 +20,7 @@ watchlistSchema.statics.fetchWatchlist = async function (email) {
     if (!email) {
       throw new Error("Email is required to fetch the watchlist.");
     }
+
   
     // Find the user by email
     const user = await User.findOne({ email: email });
@@ -38,6 +39,7 @@ watchlistSchema.statics.fetchWatchlist = async function (email) {
     // Since we're populating 'movies', 'watchlist.movies' will contain the full movie documents
     return watchlist.movies;
 };
+
 
 watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
   // Ensure both parameters are provided
@@ -66,7 +68,7 @@ watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
   } else {
       // If the movie is already in the watchlist, throw an error
       if (watchlist.movies.includes(movieId)) {
-          throw new Error("Movie already in watchlist.");
+        return watchlist;
       }
       // Add the movie to the existing watchlist
       watchlist.movies.push(movieId);
@@ -106,7 +108,7 @@ watchlistSchema.statics.removeFromWatchlist = async function(email, movieId) {
   watchlist.movies = watchlist.movies.filter(id => id.toString() !== movieId.toString());
   await watchlist.save();
 
-  return watchlist;
+  return movieId;
 };
 
 

@@ -14,7 +14,6 @@ root.render(
         <AuthContextProvider>
             <MoviesContextProvider>
                 <UsersContextProvider>
-                    {/* Wrap App component with WatchlistContextProvider */}
                     <WatchlistContextProvider>
                         <App />
                     </WatchlistContextProvider>
