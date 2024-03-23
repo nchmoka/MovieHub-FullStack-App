@@ -106,7 +106,7 @@ watchlistSchema.statics.removeFromWatchlist = async function(email, movieId) {
   watchlist.movies = watchlist.movies.filter(id => id.toString() !== movieId.toString());
   await watchlist.save();
 
-  return watchlist;
+  return movieId;
 };
 
 

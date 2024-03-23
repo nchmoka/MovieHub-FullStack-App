@@ -22,13 +22,13 @@ export const moviesReducer = (state, action) => {
                     ...state, 
                     watchlist: [...state.watchlist, action.payload],
                 };
-            case "REMOVE_FROM_WATCHLIST":
-                return {
-                    ...state, 
-                    watchlist: state.watchlist.filter(
-                        (movie) => movie._id !== action.payload._id
-                    ),
-                };    
+            // case "REMOVE_FROM_WATCHLIST":
+            //     return {
+            //         ...state, 
+            //         watchlist: state.watchlist.filter(
+            //             (movie) => movie._id !== action.payload._id
+            //         ),
+            //     };    
         default:
             return state;
     }

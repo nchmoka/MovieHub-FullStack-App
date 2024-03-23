@@ -5,8 +5,8 @@ exports.removeMovieFromWatchlist = async (req, res) => {
     const { movieId } = req.params; // Assuming userId and movieId are passed as URL parameters
     const userEmail = req.body.userEmail;
     try {
-        await Watchlist.removeFromWatchlist(userEmail, movieId);
-        res.status(200).json({ message: "Movie removed from watchlist successfully" });
+        const movie = await Watchlist.removeFromWatchlist(userEmail, movieId);
+        res.status(201).json(movie);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -18,7 +18,7 @@ exports.addMovieToWatchlist = async (req, res) => {
 
     try {
         await Watchlist.addToWatchlist(userEmail, movieId);
-        res.status(200).json({ message: "Movie added to watchlist successfully" });
+        res.status(201).json({ message: "Movie added to watchlist successfully" });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
