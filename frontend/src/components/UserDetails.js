@@ -8,7 +8,6 @@ const UserDetails = ({ user }) => {
     const [editing, setEditing] = useState(false);
     const [newRule, setNewRule] = useState(user.rule);
     const [error, setError] = useState(null);
-    console.log("user:", currentUser);
     const handleEdit = async () => {
         if (!currentUser || currentUser.rule !== "admin") {
             setError("You need to be admin to edit a user");
@@ -22,8 +21,8 @@ const UserDetails = ({ user }) => {
             setError("Rule must be admin or user");
             return;
         }
-        const response = await fetch(`/api/user/${user._id}`, {
-            method: "PATCH",
+        const response = await fetch(`/api/user/changeUserRole/${user._id}`, {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${currentUser.token}`,
@@ -35,6 +34,8 @@ const UserDetails = ({ user }) => {
             dispatch({ type: "EDIT_USER", payload: json });
             setEditing(false);
             setError(null);
+            // set the rule to the new rull
+            user.rule = newRule;
         }
         if (!response.ok) {
             setError(json.error);
