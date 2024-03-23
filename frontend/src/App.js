@@ -11,7 +11,7 @@ import Movies from "./pages/Movies";
 function App() {
     const { user } = useAuthContext();
     const isAdmin = user && user.rule === "admin";
-    const isUser = user && user.rule === "user";
+    const isUser = user;
     return (
         <div className="App">
             <BrowserRouter>
@@ -21,13 +21,7 @@ function App() {
                         <Route
                             path="/"
                             element={
-                                isUser ? (
-                                    <Home />
-                                ) : isAdmin ? (
-                                    <Navigate to="/users" />
-                                ) : (
-                                    <Navigate to="/login" />
-                                )
+                                isUser ? <Home /> : <Navigate to="/login" />
                             }
                         />
                         <Route
@@ -44,8 +38,10 @@ function App() {
                         />
                         <Route
                             path="/watchlist"
-                            element={user ? <Watchlist /> : <Navigate to="/login" />}
-/>
+                            element={
+                                user ? <Watchlist /> : <Navigate to="/login" />
+                            }
+                        />
 
                         <Route
                             path="/movies"

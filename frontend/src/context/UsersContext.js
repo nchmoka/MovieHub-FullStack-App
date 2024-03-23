@@ -11,6 +11,12 @@ export const usersReducer = (state, action) => {
             return {
                 users: state.users.filter((w) => w._id !== action.payload._id),
             };
+        case "EDIT_USER":
+            return {
+                users: state.users.map((w) =>
+                    w._id === action.payload._id ? action.payload : w
+                ),
+            };
         default:
             return state;
     }
