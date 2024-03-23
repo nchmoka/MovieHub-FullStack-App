@@ -8,6 +8,7 @@ const {
     loginUser,
     getUsers,
     changeUserRole,
+    deleteUser,
 } = require("../controllers/userController");
 const requireRule = require("../middleware/requireRule");
 const { get } = require("mongoose");
@@ -25,5 +26,8 @@ router.get("/getUsers", getUsers);
 
 // change user role
 router.post("/changeUserRole/:id", changeUserRole);
+
+// DELETE a movie
+router.delete("/:id", deleteUser);
 
 module.exports = router;

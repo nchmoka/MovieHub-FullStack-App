@@ -34,8 +34,8 @@ const UserDetails = ({ user }) => {
             dispatch({ type: "EDIT_USER", payload: json });
             setEditing(false);
             setError(null);
-            // set the rule to the new rull
-            user.rule = newRule;
+            json.rule = newRule;
+            dispatch({ type: "EDIT_USER", payload: json });
         }
         if (!response.ok) {
             setError(json.error);
