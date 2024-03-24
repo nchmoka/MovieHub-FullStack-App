@@ -5,14 +5,18 @@ import { Slide, Fade } from "react-awesome-reveal";
 import { HiOutlineInformationCircle } from "react-icons/hi2";
 import { CiCirclePlus } from "react-icons/ci";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { AiOutlineDelete } from "react-icons/ai";
 
 
 const MovieDetails = ({ movie }) => {
     const { dispatch } = useMoviesContext();
     const { user } = useAuthContext();
     const [showDetails, setShowDetails] = useState(false);
-    const handleClick = async () => {
+    const handleDelete = async () => {
         if (!user) {
+            return;
+        }
+        if (user.rule !== "admin"){
             return;
         }
         const response = await fetch("/api/movies/" + movie._id, {
@@ -66,12 +70,18 @@ const MovieDetails = ({ movie }) => {
                   <Slide cascade>
                     <h1 className="text-3xl font-bold mb-4">{movie.title}</h1>
                     <div>
-                      <button title="More Details" className="bg-transplant text-white px-6 py-3 rounded-lg duration-300 hover:bg-gray-400" onClick={handleModalToggle}>
-                        <HiOutlineInformationCircle className="text-4xl"/>
+                      <button title="More Details" className="bg-transplant text-white px-3 py-3 rounded-lg duration-300 hover:bg-gray-400" onClick={handleModalToggle}>
+                        <HiOutlineInformationCircle className="text-3xl"/>
                       </button>
-                      <button title="Add to Watchlist" className="bg-transplant text-white ml-5 px-6 py-3 rounded-lg duration-300 hover:bg-gray-400" onClick={handleAddToWatchlistClick}>
-                        <CiCirclePlus className="text-4xl"/>  
+                      <button title="Add to Watchlist" className="bg-transplant text-white ml-5 px-3 py-3 rounded-lg duration-300 hover:bg-gray-400" onClick={handleAddToWatchlistClick}>
+                        <CiCirclePlus className="text-3xl"/>  
                       </button>
+                      {user && user.rule === "admin" &&
+                        <button title="Delete Movie" className="bg-transplant text-white ml-5 px-3 py-3 rounded-lg duration-300 hover:bg-gray-400" onClick={handleDelete}>
+                            <AiOutlineDelete className="text-3xl"/>  
+                        </button>
+                      }
+                      
                     </div>
                   </Slide>
                 </div>
