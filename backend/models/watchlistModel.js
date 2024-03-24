@@ -68,7 +68,7 @@ watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
   } else {
       // If the movie is already in the watchlist, throw an error
       if (watchlist.movies.includes(movieId)) {
-        return watchlist;
+        throw watchlist;
       }
       // Add the movie to the existing watchlist
       watchlist.movies.push(movieId);
