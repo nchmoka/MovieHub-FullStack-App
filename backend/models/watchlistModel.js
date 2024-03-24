@@ -7,6 +7,7 @@ const watchlistSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    unique: true,
     required: true,
   },
   movies: [{
@@ -42,37 +43,33 @@ watchlistSchema.statics.fetchWatchlist = async function (email) {
 
 
 watchlistSchema.statics.addToWatchlist = async function(email, movieId) {
-  // Ensure both parameters are provided
   if (!email || !movieId) {
-      throw new Error("Both email and movieId are required.");
+    throw new Error("Both email and movieId are required.");
   }
 
-  // Find the user by email
   const user = await User.findOne({ email: email });
   if (!user) {
-      throw new Error("User not found.");
+    throw new Error("User not found.");
   }
 
-  // Ensure the movie exists
   const movie = await Movie.findById(movieId);
   if (!movie) {
-      throw new Error("Movie not found.");
+    throw new Error("Movie not found.");
   }
 
-  // Attempt to find an existing watchlist for the user
   let watchlist = await this.findOne({ user: user._id });
 
-  // If the watchlist doesn't exist, create a new one
   if (!watchlist) {
-      watchlist = await this.create({ user: user._id, movies: [movieId] });
+    watchlist = await this.create({
+      user: user._id,
+      movies: [movie._id]
+    });
   } else {
-      // If the movie is already in the watchlist, throw an error
-      if (watchlist.movies.includes(movieId)) {
-        return watchlist;
-      }
-      // Add the movie to the existing watchlist
-      watchlist.movies.push(movieId);
-      await watchlist.save();
+    if (watchlist.movies.find(movieIdInList => movieIdInList.equals(movieId))) {
+      throw new Error("Movie already in watchlist.");
+    }
+    watchlist.movies.push(movie._id);
+    await watchlist.save();
   }
 
   return watchlist;

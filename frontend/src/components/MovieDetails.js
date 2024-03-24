@@ -58,6 +58,10 @@ const MovieDetails = ({ movie }) => {
         if (response.ok) {
             // Assuming you have a dispatch action for adding to the watchlist
             dispatch({ type: "ADD_MOVIE_TO_WATCHLIST", payload: json });
+            alert("Movie Added To Watchlist Successfully.");
+        }
+            else {
+            alert("The Movie Is Already In Watchlist!");
         }
     };
 
@@ -108,7 +112,6 @@ const MovieDetails = ({ movie }) => {
                     </div>
                 </div>
             )}
-        </div>
     );
 };
 
