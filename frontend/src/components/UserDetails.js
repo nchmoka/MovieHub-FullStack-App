@@ -76,7 +76,7 @@ const UserDetails = ({ user }) => {
             {editing ? (
                 <p>
                     <strong>
-                        New Rule:
+                        New Role:
                         <input
                             type="text"
                             value={newRule}
@@ -93,7 +93,7 @@ const UserDetails = ({ user }) => {
                 </p>
             ) : (
                 <p>
-                    <strong>Rule: </strong>
+                    <strong>Role: </strong>
                     {user.rule}
                     {currentUser && currentUser.rule === "admin" && (
                         <button

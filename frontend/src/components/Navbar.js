@@ -22,7 +22,7 @@ const Navbar = () => {
                                 <button type="button">Users</button>
                             </Link>
                             <Link to="/movies">
-                                <button type="button">Movies</button>
+                                <button type="button">Add movies</button>
                             </Link>
                             <Link to="/watchlist">
                                 <button type="button">Watchlist</button>
@@ -32,7 +32,10 @@ const Navbar = () => {
                     )}
                     {user && user.rule !== "admin" && (
                         <div>
-                            <Link to="/watchlist">Watchlist</Link>
+                            <span>{user.email}</span>
+                            <Link to="/watchlist">
+                                <button type="button">Watchlist</button>
+                            </Link>
                             <button onClick={handleClick}>Logout</button>
                         </div>
                     )}

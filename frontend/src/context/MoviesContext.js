@@ -13,22 +13,23 @@ export const moviesReducer = (state, action) => {
             };
         case "DELETE_MOVIE":
             return {
+                ...state,
                 movies: state.movies.filter(
-                    (w) => w._id !== action.payload._id
+                    (movie) => movie._id !== action.payload
                 ),
             };
-            case "ADD_TO_WATCHLIST":
-                return {
-                    ...state, 
-                    watchlist: [...state.watchlist, action.payload],
-                };
-            // case "REMOVE_FROM_WATCHLIST":
-            //     return {
-            //         ...state, 
-            //         watchlist: state.watchlist.filter(
-            //             (movie) => movie._id !== action.payload._id
-            //         ),
-            //     };    
+        case "ADD_TO_WATCHLIST":
+            return {
+                ...state,
+                watchlist: [...state.watchlist, action.payload],
+            };
+        // case "REMOVE_FROM_WATCHLIST":
+        //     return {
+        //         ...state,
+        //         watchlist: state.watchlist.filter(
+        //             (movie) => movie._id !== action.payload._id
+        //         ),
+        //     };
         default:
             return state;
     }

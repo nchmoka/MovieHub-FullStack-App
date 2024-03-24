@@ -28,12 +28,6 @@ const Movies = () => {
 
     return (
         <div className="home">
-            <div className="movies">
-                {movies &&
-                    movies.map((movie) => (
-                        <MovieDetails key={movie._id} movie={movie} />
-                    ))}
-            </div>
             <MovieForm />
         </div>
     );
