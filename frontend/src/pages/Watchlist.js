@@ -27,8 +27,8 @@ const Watchlist = () => {
   }, [dispatch, user]);
 
   return (
-    <div className="watchlist">
-        <div className="movies">
+    <div className="watchlist flex justify-center ">
+        <div className="movies grid grid-cols-4 gap-8">
             {watchlist &&
                 watchlist.map((movie) => (
                     <WatchlistDetails key={movie._id} movie={movie} />

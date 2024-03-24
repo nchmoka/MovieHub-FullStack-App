@@ -112,6 +112,7 @@ const MovieDetails = ({ movie }) => {
                     </div>
                 </div>
             )}
+        </div>
     );
 };
 
