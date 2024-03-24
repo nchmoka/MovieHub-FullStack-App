@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
 
 const createToken = (_id) => {
-    // TODO: change in production to 8h or 1d
-    return jwt.sign({ _id: _id }, process.env.JWT_SECRET, { expiresIn: "30d" });
+    // expire in 8h
+    return jwt.sign({ _id: _id }, process.env.JWT_SECRET, { expiresIn: "8h" });
 };
 
 // login user
