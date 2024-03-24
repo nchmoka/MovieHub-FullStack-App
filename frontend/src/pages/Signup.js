@@ -25,7 +25,12 @@ const Signup = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
             />
-            <button disabled={isLoading}>Sign up</button>
+            <button
+                disabled={isLoading}
+                style={{ display: "block", margin: "auto" }}
+            >
+                Sign up
+            </button>
             {error && <div className="error">{error}</div>}
         </form>
     );
